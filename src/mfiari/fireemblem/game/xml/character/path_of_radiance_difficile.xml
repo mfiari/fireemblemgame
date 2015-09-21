@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<chapitre name="blazing sword" objectif="battre le boss">
+	<personnages>
+		<personnage nom="Eliwood" type="lord_eliwood" status="boss">
+			<position x="19" y="9" ></position>
+			<objets>
+				<objet nom="epee-fer" type="epee_fer"></objet>
+				<objet nom="epee-acier" type="epee_acier"></objet>
+				<objet nom="epee-argent" type="epee_argent"></objet>
+				<objet nom="lance-fer" type="lance_fer"></objet>
+			</objets>
+		</personnage>
+		<personnage nom="hector" type="lord_hector">
+			<position x="19" y="10" ></position>
+			<objets>
+				<objet nom="hache-fer" type="hache_fer"></objet>
+				<objet nom="hache-acier" type="hache_acier"></objet>
+				<objet nom="hache-argent" type="hache_argent"></objet>
+				<objet nom="epee-fer" type="epee_fer"></objet>
+			</objets>
+		</personnage>
+		<personnage nom="lyn" type="lord_lyn">
+			<position x="19" y="11" ></position>
+			<objets>
+				<objet nom="epee-fer" type="epee_fer"></objet>
+				<objet nom="epee-acier" type="epee_acier"></objet>
+				<objet nom="epee-argent" type="epee_argent"></objet>
+			</objets>
+		</personnage>
+	</personnages>
+	<ennemies>
+		<ennemie nom="general" type="general" status="boss">
+			<position x="1" y="10" ></position>
+			<stat niv="10"></stat>
+			<objets>
+				<objet nom="hache-argent" type="hache_fer"></objet>
+				<objet nom="lance-argent" type="lance_fer"></objet>
+			</objets>
+			<strategie nom="immobile"></strategie>
+		</ennemie>
+		<ennemie nom="chevalier" type="chevalier">
+			<stat niv="15"></stat>
+			<position x="2" y="9" ></position>
+			<objets>
+				<objet nom="lance-fer" type="lance_fer"></objet>
+			</objets>
+			<strategie nom="immobile"></strategie>
+		</ennemie>
+		<ennemie nom="chevalier" type="chevalier">
+			<stat niv="15"></stat>
+			<position x="2" y="11" ></position>
+			<objets>
+				<objet nom="lance-fer" type="lance_fer"></objet>
+			</objets>
+			<strategie nom="immobile"></strategie>
+		</ennemie>
+		<ennemie nom="Combattant" type="combattant">
+			<stat niv="10"></stat>
+			<position x="4" y="3" ></position>
+			<objets>
+				<objet nom="hache-fer" type="hache_fer"></objet>
+			</objets>
+			<strategie nom="portee"></strategie>
+		</ennemie>
+		<ennemie nom="Combattant" type="combattant">
+			<stat niv="10"></stat>
+			<position x="4" y="18" ></position>
+			<objets>
+				<objet nom="hache-fer" type="hache_fer"></objet>
+			</objets>
+			<strategie nom="portee"></strategie>
+		</ennemie>
+		<ennemie nom="chevalier" type="chevalier">
+			<stat niv="10"></stat>
+			<position x="8" y="8" ></position>
+			<objets>
+				<objet nom="lance-fer" type="lance_fer"></objet>
+			</objets>
+			<strategie nom="plusProche"></strategie>
+		</ennemie>
+		<ennemie nom="chevalier" type="chevalier">
+			<stat niv="10"></stat>
+			<position x="8" y="12" ></position>
+			<objets>
+				<objet nom="lance-fer" type="lance_fer"></objet>
+			</objets>
+			<strategie nom="plusProche"></strategie>
+		</ennemie>
+		<ennemie nom="Combattant" type="combattant">
+			<stat niv="5"></stat>
+			<position x="10" y="6" ></position>
+			<objets>
+				<objet nom="hache-fer" type="hache_fer"></objet>
+			</objets>
+			<strategie nom="plusProche"></strategie>
+		</ennemie>
+		<ennemie nom="chevalier" type="chevalier">
+			<stat niv="5"></stat>
+			<position x="10" y="10" ></position>
+			<objets>
+				<objet nom="lance-fer" type="lance_fer"></objet>
+			</objets>
+			<strategie nom="immobile"></strategie>
+		</ennemie>
+		<ennemie nom="Combattant" type="combattant">
+			<stat niv="5"></stat>
+			<position x="10" y="14" ></position>
+			<objets>
+				<objet nom="hache-fer" type="hache_fer"></objet>
+			</objets>
+			<strategie nom="portee"></strategie>
+		</ennemie>
+		<ennemie nom="Combattant" type="combattant">
+			<position x="15" y="10" ></position>
+			<objets>
+				<objet nom="hache-fer" type="hache_fer"></objet>
+			</objets>
+			<strategie nom="immobile"></strategie>
+		</ennemie>
+	</ennemies>
+</chapitre>
