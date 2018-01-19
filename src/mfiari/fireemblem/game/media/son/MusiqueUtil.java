@@ -31,7 +31,7 @@ public class MusiqueUtil {
     public static final String THEME = "theme";
     
     public Musique getMusique (String nom) {
-        InputStream url = getClass().getResourceAsStream("/fireemblem/media/son/"+nom+".wav");
+        InputStream url = getClass().getResourceAsStream("/mfiari/fireemblem/game/media/son/"+nom+".wav");
         if (url != null) {
             return new Musique(nom, nom, url);
         }

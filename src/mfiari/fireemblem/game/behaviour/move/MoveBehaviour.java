@@ -54,7 +54,7 @@ public abstract class MoveBehaviour {
         for (Case zone : plateauDeJeu.getZones()) {
             if (zone.getPosition().equalsXY(positionPerso)) {
                 list.add(zone);
-                couts.put(zone, new ArrayList<Integer>());
+                couts.put(zone, new ArrayList<>());
                 couts.get(zone).add(0);
                 break;
             }
@@ -73,7 +73,7 @@ public abstract class MoveBehaviour {
         if (deplacementRestant >= 0) {
             if (!list.contains(z)) {
                 list.add(z);
-                couts.put(z, new ArrayList<Integer>());
+                couts.put(z, new ArrayList<>());
             }
             if (!couts.get(z).contains(deplacementRestant)) {
                 couts.get(z).add(deplacementRestant);

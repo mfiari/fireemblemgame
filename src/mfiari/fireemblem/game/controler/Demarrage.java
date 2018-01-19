@@ -32,8 +32,10 @@ public class Demarrage extends ControlleurVue {
     
     
     public final String CHOIX_LANGUE = "choixLangue";
+    public final String CHOIX_NOM = "choixNom";
     public final String CHOIX_PARTIE = "choixPartie";
     public final String MENU = "menu";
+    public final String PROLOGUE = "prologue";
     
     public final int NOUVELLE_PARTIE_ACTION = 1;
     public final int CONTINUER_ACTION = 2;
@@ -42,9 +44,15 @@ public class Demarrage extends ControlleurVue {
     public final int EXTRA_ACTION = 5;
     
     private Musique musique;
+    
+    private String yourName;
 
     public Demarrage() {
         super(true);
+    }
+    
+    public void setNom (String nom) {
+        this.yourName = nom;
     }
     
     public void jeu () {
@@ -110,6 +118,9 @@ public class Demarrage extends ControlleurVue {
         if (!choosenPartie.isEmpty()) {
             
         }
+        //this.pcsControlleurVue.firePropertyChange(CHOIX_NOM, null, null);
+        this.musique.stop();
+        //this.pcsControlleurVue.firePropertyChange(PROLOGUE, null, null);
         List<Character> characters = new ArrayList<>();
         CharacterFactory characterFactory = new CharacterFactory();
         ObjetFactory objetFactory = new ObjetFactory();
@@ -143,7 +154,6 @@ public class Demarrage extends ControlleurVue {
         Connexion connexion = new Connexion(connexionBD.getConnexionHSQL(Config.getPropertie("hsql_location"), Config.getPropertie("hsql_user"), Config.getPropertie("hsql_password")));
         connexion.nouvellePartie(characters, choosenPartie);
         Game game = new Game(choosenPartie);
-        this.musique.stop();
         game.start();
     }
     

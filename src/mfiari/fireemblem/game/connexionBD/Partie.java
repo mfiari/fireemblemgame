@@ -7,7 +7,6 @@
 package mfiari.fireemblem.game.connexionBD;
 
 import mfiari.fireemblem.game.character.Character;
-import mfiari.fireemblem.game.controler.Chapter;
 import java.util.List;
 
 /**

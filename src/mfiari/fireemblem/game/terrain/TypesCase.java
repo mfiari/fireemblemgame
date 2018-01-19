@@ -12,6 +12,6 @@ package mfiari.fireemblem.game.terrain;
  */
 public enum TypesCase {
     
-    buisson, chateau, desert, fort, marecage, mer, montagne, mur, plaine, porte, riviere, sable
+    buisson, chateau, desert, fort, marecage, mer, montagne, mur, plaine, porte, riviere, sable, forest
     
 }

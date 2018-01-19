@@ -8,6 +8,9 @@ package mfiari.fireemblem.game.controler;
 
 import mfiari.fireemblem.game.connexionBD.Partie;
 import mfiari.lib.game.controlleur.ControlleurVue;
+import mfiari.fireemblem.game.character.Character;
+import mfiari.lib.game.controlleur.Vues;
+import mfiari.lib.game.position.Position;
 
 /**
  *
@@ -34,7 +37,41 @@ public class Menu extends ControlleurVue {
         return this.partie;
     }
     
+    public void init () {
+        /* On ajoute les perso obligatoire */
+        this.chapter.getPlateauDeJeu().getPersonnagesObligatoire().stream().filter((character) -> (this.partie.getPersonnages().contains(character))).forEach((character) -> {
+            Character myCharacter = this.partie.getPersonnages().get(this.partie.getPersonnages().indexOf(character));
+            myCharacter.setPosition(character.getPosition());
+            this.chapter.getPlateauDeJeu().ajouterPersonnage(myCharacter);
+        }); 
+        /* On ajoute les autres perso */
+        int minAvailableCharacter = this.chapter.getPlateauDeJeu().getMaxUnits() > this.partie.getPersonnages().size() ? this.partie.getPersonnages().size() : this.chapter.getPlateauDeJeu().getMaxUnits();
+        for (int i = 0 ; i < this.partie.getPersonnages().size() ; i++) {
+            if (this.getChapter().getPlateauDeJeu().getPersonnages().size() == minAvailableCharacter) {
+                break;
+            }
+            if (!this.chapter.getPlateauDeJeu().getPersonnages().contains(this.partie.getPersonnages().get(i))) {
+                Character character = this.partie.getPersonnages().get(i);
+                for (Position position : this.chapter.getPlateauDeJeu().getPositions()) {
+                    boolean isPositionAvailable = true;
+                    for (Character perso : this.chapter.getPlateauDeJeu().getPersonnages()) {
+                        if (perso.getPosition().equalsXY(position)) {
+                            isPositionAvailable = false;
+                            break;
+                        }
+                    }
+                    if (isPositionAvailable) {
+                        character.setPosition(position);
+                        break;
+                    }
+                }
+                this.chapter.getPlateauDeJeu().getPersonnages().add(character);
+            }
+        }
+    }
+    
     public void start () {
+        this.init();
         do {
             this.pcsControlleurVue.firePropertyChange(MENU, null, null);
             switch (this.choix) {
@@ -74,6 +111,7 @@ public class Menu extends ControlleurVue {
     }
     
     private void playChapter () {
+        Vues.createVue(this.chapter);
         this.chapter.run();
     }
     

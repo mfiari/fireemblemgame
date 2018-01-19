@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<map width="11" height="15">
+	<case type="montagne" x="0" y="0"></case>
+	<case type="montagne" x="0" y="1"></case>
+	<case type="chateau" x="0" y="3"></case>
+	<case type="forest" x="0" y="7"></case>
+	<case type="montagne" x="0" y="9"></case>
+	<case type="montagne" x="0" y="10"></case>
+	<case type="montagne" x="0" y="11"></case>
+	<case type="montagne" x="0" y="12"></case>
+	<case type="montagne" x="0" y="13"></case>
+	<case type="montagne" x="0" y="14"></case>
+	<case type="montagne" x="1" y="11"></case>
+	<case type="montagne" x="1" y="12"></case>
+	<case type="montagne" x="1" y="13"></case>
+	<case type="montagne" x="1" y="14"></case>
+	<case type="montagne" x="2" y="13"></case>
+	<case type="montagne" x="2" y="14"></case>
+	<case type="forest" x="9" y="13"></case>
+	<case type="forest" x="8" y="13"></case>
+	<case type="forest" x="10" y="2"></case>
+</map>

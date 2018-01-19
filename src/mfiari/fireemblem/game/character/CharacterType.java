@@ -13,7 +13,7 @@ package mfiari.fireemblem.game.character;
 public enum CharacterType {
     
     /* Class classique */
-    archer_male, archer_female, assassin, berserker, bretteur, cavalier, cavalier_nomade, cavalier_wyvern, chevalier, chevalier_pegase, chevalier_wyvern, 
+    archer_male, archer_female, assassin, bandit, berserker, bretteur, cavalier, cavalier_nomade, cavalier_wyvern, chevalier, chevalier_pegase, chevalier_wyvern, 
     clerc, combattant, corbeau, dragon_feu, druid, faucon, general, guerrier, heros, lord_wyvern, mage, manakete, mercenaire, myrmidon, paladin, pirate, 
     pretre, sage, shaman, sniper, soldat, valkyrie, voleur, 
     

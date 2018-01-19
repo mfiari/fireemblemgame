@@ -19,6 +19,8 @@ public class CharacterImage extends Image {
     private static final String COMBAT = "combat/";
     private static final String MAP = "map/";
     private static final String MENU = "menu/";
+    private static final String DIALOGUE_LEFT = "dialogue/left/";
+    private static final String DIALOGUE_RIGHT = "dialogue/right/";
     private static final String DEFAULT_IMAGE = "default";
 
     static {
@@ -195,6 +197,20 @@ public class CharacterImage extends Image {
             }
         }
         return this.getImageIcon(this.getInputStreamImage(DEFAULT_IMAGE, MAP));
+    }
+
+    public BufferedImage getImageDialogueLeft(String name) {
+        if (this.aImage(name, DIALOGUE_LEFT)) {
+            return this.getImage(this.getInputStreamImage(name, DIALOGUE_LEFT));
+        }
+        return this.getImage(DEFAULT_IMAGE, DIALOGUE_LEFT);
+    }
+
+    public BufferedImage getImageDialogueRight(String name) {
+        if (this.aImage(name, DIALOGUE_RIGHT)) {
+            return this.getImage(this.getInputStreamImage(name, DIALOGUE_RIGHT));
+        }
+        return this.getImage(DEFAULT_IMAGE, DIALOGUE_RIGHT);
     }
 
 }

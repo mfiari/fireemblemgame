@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<chapitre name="Sacae" objectif="battre le boss" max_units="6">
+	<positions>
+		<position x="7" y="13" ></position>
+		<position x="7" y="14" ></position>
+		<position x="8" y="13" ></position>
+		<position x="8" y="14" ></position>
+		<position x="9" y="13" ></position>
+		<position x="9" y="14" ></position>
+	</positions>
+	<personnages>
+		<personnage nom="hector" type="lord_hector">
+			<position x="7" y="13" ></position>
+		</personnage>
+		<personnage nom="eliwood" type="lord_eliwood" status="boss">
+			<position x="7" y="14" ></position>
+		</personnage>
+		<personnage nom="lyn" type="lord_lyn">
+			<position x="8" y="14" ></position>
+		</personnage>
+	</personnages>
+	<ennemies>
+		<ennemie nom="Migal" type="bandit" status="boss">
+			<position x="1" y="3" ></position>
+			<stat niv="6" pvgagne="3" puissancegagne="2" capacitegagne="1" vitessegagne="1" chancegagne="2" defgagne="2"></stat>
+			<objets>
+				<objet nom="hache-acier" type="hache_acier"></objet>
+			</objets>
+			<strategie nom="immobile"></strategie>
+		</ennemie>
+		<ennemie nom="bandit" type="bandit">
+			<position x="2" y="2" ></position>
+			<stat niv="3"></stat>
+			<objets>
+				<objet nom="hache-fer" type="hache_fer"></objet>
+			</objets>
+			<strategie nom="portee"></strategie>
+		</ennemie>
+		<ennemie nom="bandit" type="bandit">
+			<position x="2" y="4" ></position>
+			<stat niv="3"></stat>
+			<objets>
+				<objet nom="hache-fer" type="hache_fer"></objet>
+			</objets>
+			<strategie nom="portee"></strategie>
+		</ennemie>
+		<ennemie nom="bandit" type="bandit">
+			<position x="2" y="14" ></position>
+			<objets>
+				<objet nom="hache-fer" type="hache_fer"></objet>
+			</objets>
+			<strategie nom="plusProche"></strategie>
+		</ennemie>
+		<ennemie nom="bandit" type="bandit">
+			<position x="5" y="0" ></position>
+			<objets>
+				<objet nom="hache-fer" type="hache_fer"></objet>
+			</objets>
+			<strategie nom="portee"></strategie>
+		</ennemie>
+		<ennemie nom="bandit" type="bandit">
+			<position x="5" y="7" ></position>
+			<stat niv="2"></stat>
+			<objets>
+				<objet nom="hache-fer" type="hache_fer"></objet>
+			</objets>
+			<strategie nom="immobile"></strategie>
+		</ennemie>
+		<ennemie nom="bandit" type="bandit">
+			<position x="5" y="9" ></position>
+			<objets>
+				<objet nom="hache-fer" type="hache_fer"></objet>
+			</objets>
+			<strategie nom="plusProche"></strategie>
+		</ennemie>
+		<ennemie nom="bandit" type="bandit">
+			<position x="10" y="8" ></position>
+			<objets>
+				<objet nom="hache-fer" type="hache_fer"></objet>
+			</objets>
+			<strategie nom="plusProche"></strategie>
+		</ennemie>
+	</ennemies>
+</chapitre>

@@ -66,7 +66,6 @@ public class Chapter extends ControlleurVue {
     private Musique musique;
     private MusiqueUtil musiqueUtil;
     private List<EvenementRecrutement> evenementRecrutement;
-    private int maxCharacterUnits;
 
     public final String AFFICHE_ACTION_PERSO = "afficheActionPerso";
     public final String AFFICHE_ARMES_PERSO = "afficheArmePerso";
@@ -136,12 +135,11 @@ public class Chapter extends ControlleurVue {
     }
 
     public Chapter(String nom, GamePlatform plateauDeJeu, Organization organization, String objectif, List<EvenementRecrutement> evenementRecrutement) {
-        super(true);
+        super(false);
         this.nom = nom;
         this.plateauDeJeu = plateauDeJeu;
         this.objectif = objectif;
         this.nbTour = 1;
-        this.maxCharacterUnits = 20;
         this.organization = organization;
         this.evenementRecrutement = evenementRecrutement;
         this.renfortAppeler = false;
@@ -176,10 +174,6 @@ public class Chapter extends ControlleurVue {
 
     public void setTour(int tour) {
         this.nbTour = tour;
-    }
-    
-    public int getMaxCharacterUnits () {
-        return this.maxCharacterUnits;
     }
 
     public void setCurrentPosition(Position position) {

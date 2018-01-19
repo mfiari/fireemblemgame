@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<chapitre name="Pherae" objectif="battre le boss" max_units="6">
+	<positions>
+	</positions>
+	<personnages>
+		<personnage nom="hector" type="lord_hector">
+			<position x="13" y="7" ></position>
+		</personnage>
+		<personnage nom="Eliwood" type="lord_eliwood" status="boss">
+			<position x="14" y="7" ></position>
+		</personnage>
+		<personnage nom="lyn" type="lord_lyn">
+			<position x="14" y="8" ></position>
+		</personnage>
+	</personnages>
+	<ennemies>
+		<ennemie nom="Migal" type="bandit" status="boss">
+			<position x="3" y="1" ></position>
+			<stat niv="6" pvgagne="3" puissancegagne="2" capacitegagne="1" vitessegagne="1" chancegagne="2" defgagne="2"></stat>
+			<objets>
+				<objet nom="hache-acier" type="hache_acier"></objet>
+			</objets>
+			<strategie nom="immobile"></strategie>
+		</ennemie>
+	</ennemies>
+</chapitre>

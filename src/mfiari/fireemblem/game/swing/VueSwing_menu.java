@@ -6,6 +6,7 @@
 
 package mfiari.fireemblem.game.swing;
 
+import java.awt.Color;
 import mfiari.fireemblem.game.character.Character;
 import mfiari.fireemblem.game.controler.Menu;
 import mfiari.fireemblem.game.keyevent.MenuKeyAction;
@@ -101,13 +102,21 @@ public class VueSwing_menu extends VueSwing {
         box.add(rightBox);
         
         panelInfo.add(new JLabel("PRESS START"));
-        panelInfo.add(new JLabel("UNITS : " + this.menu.getChapter().getPlateauDeJeu().getPersonnages().size() + " / " + this.menu.getChapter().getMaxCharacterUnits()));
+        panelInfo.add(new JLabel("UNITS : " + this.menu.getChapter().getPlateauDeJeu().getPersonnages().size() + " / " + this.menu.getChapter().getPlateauDeJeu().getMaxUnits()));
         
         for (int i = 0 ; i < characters.size() ; i++) {
             Character character = characters.get(i);
             Box panel = Box.createHorizontalBox();
             panel.add(new PanelImage(CharacterImage.getImageIconMapFromPersonnage(character), 30, 30));
-            panel.add(new JLabel(character.getName()));
+            JLabel labelName = new JLabel(character.getName());
+            if (this.menu.getChapter().getPlateauDeJeu().getPersonnagesObligatoire().contains(character)) {
+                labelName.setForeground(Color.GREEN);
+            } else if (this.menu.getChapter().getPlateauDeJeu().getPersonnages().contains(character)) {
+                labelName.setForeground(Color.WHITE);
+            } else {
+                labelName.setForeground(Color.BLACK);
+            }
+            panel.add(labelName);
             panelPerso.add(panel);
             components[i] = panel;
         }

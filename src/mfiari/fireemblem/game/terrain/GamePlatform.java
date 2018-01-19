@@ -18,15 +18,20 @@ public class GamePlatform {
 
     private final List<Case> zones;
     private final List<Access> acces;
+    private final List<Character> personnagesObligatoire;
+    private final List<Position> positions;
     private final List<Character> personnages;
     private final List<Character> ennemies;
     private final List<Character> annexes;
     private int width;
     private int height;
+    private int maxUnit;
 
     public GamePlatform() {
         this.zones = new ArrayList<>();
         this.acces = new ArrayList<>();
+        this.personnagesObligatoire = new ArrayList<>();
+        this.positions = new ArrayList<>();
         this.personnages = new ArrayList<>();
         this.ennemies = new ArrayList<>();
         this.annexes = new ArrayList<>();
@@ -48,6 +53,14 @@ public class GamePlatform {
 
     public int getHeight() {
         return this.height;
+    }
+
+    public void setMaxUnits(int maxUnits) {
+        this.maxUnit = maxUnits;
+    }
+
+    public int getMaxUnits() {
+        return this.maxUnit;
     }
 
     public void ajouterZone(Case zone) {
@@ -90,6 +103,22 @@ public class GamePlatform {
 
     public List<Access> getAcces() {
         return acces;
+    }
+
+    public void ajouterPersonnageObligatoire(Character p) {
+        this.personnagesObligatoire.add(p);
+    }
+
+    public List<Character> getPersonnagesObligatoire() {
+        return this.personnagesObligatoire;
+    }
+    
+    public void ajouterPosition (Position p) {
+        this.positions.add(p);
+    }
+    
+    public List<Position> getPositions () {
+        return this.positions;
     }
 
     public void ajouterPersonnage(Character p) {

@@ -23,7 +23,6 @@ import mfiari.fireemblem.game.strategy.NoMovementStrategy;
 import mfiari.fireemblem.game.strategy.RangeStrategy;
 import mfiari.fireemblem.game.strategy.Strategy;
 import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.Objects;
 import mfiari.lib.game.position.Position;
 
@@ -100,12 +99,9 @@ public class Character {
         this.status = Status.normal;
         this.etat = Etat.normal;
         if (organisation != null) {
-            organisation.addListener(new PropertyChangeListener() {
-                @Override
-                public void propertyChange(PropertyChangeEvent evt) {
-                    if (evt.getPropertyName().equals("ordre")) {
-                        ordre((Chapter.Ordre) evt.getOldValue());
-                    }
+            organisation.addListener((PropertyChangeEvent evt) -> {
+                if (evt.getPropertyName().equals("ordre")) {
+                    ordre((Chapter.Ordre) evt.getOldValue());
                 }
             });
         }

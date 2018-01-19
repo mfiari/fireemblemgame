@@ -62,7 +62,15 @@ public class ChapterParser implements XMLParser {
     }
 
     private void startElement(XMLStreamReader reader) {
-        if ("personnage".equals(reader.getLocalName())) {
+        if ("chapitre".equals(reader.getLocalName())) {
+            for (int i = 0; i < reader.getAttributeCount(); i++) {
+                if ("max_units".equals(reader.getAttributeLocalName(i))) {
+                    this.plateauJeu.setMaxUnits(Integer.valueOf(reader.getAttributeValue(i)));
+                }
+            }
+        } else if ("positions".equals(reader.getLocalName())) {
+            this.perosEnCours = null;
+        } else if ("personnage".equals(reader.getLocalName())) {
             this.perosEnCours = this.createPersonnage(reader);
             this.isPerso = true;
         } else if ("ennemie".equals(reader.getLocalName())) {
@@ -81,7 +89,11 @@ public class ChapterParser implements XMLParser {
                     y = Integer.valueOf(reader.getAttributeValue(i));
                 }
             }
-            this.perosEnCours.setPosition(new Position(x, y));
+            if (this.perosEnCours == null) {
+                this.plateauJeu.ajouterPosition(new Position(x, y));
+            } else {
+                this.perosEnCours.setPosition(new Position(x, y));
+            }
         } else if ("stat".equals(reader.getLocalName())) {
             int pv = 0;
             boolean pvRecup = false;
@@ -149,7 +161,7 @@ public class ChapterParser implements XMLParser {
 
     private void endElement(XMLStreamReader reader) {
         if ("personnage".equals(reader.getLocalName())) {
-            this.plateauJeu.ajouterPersonnage(this.perosEnCours);
+            this.plateauJeu.ajouterPersonnageObligatoire(this.perosEnCours);
         } else if ("ennemie".equals(reader.getLocalName())) {
             this.plateauJeu.ajouterEnnemie(this.perosEnCours);
         } else if ("annexe".equals(reader.getLocalName())) {
@@ -167,6 +179,7 @@ public class ChapterParser implements XMLParser {
                 nom = reader.getAttributeValue(i);
             } else if ("type".equals(reader.getAttributeLocalName(i))) {
                 type = reader.getAttributeValue(i);
+                    System.out.println(type);
             } else if ("status".equals(reader.getAttributeLocalName(i))) {
                 status = Character.Status.valueOf(reader.getAttributeValue(i));
             } else if ("etat".equals(reader.getAttributeLocalName(i))) {

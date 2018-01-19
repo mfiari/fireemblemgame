@@ -18,6 +18,7 @@ import mfiari.fireemblem.game.terrain.GamePlatform;
 import mfiari.fireemblem.game.terrain.Terrain;
 import java.util.ArrayList;
 import java.util.List;
+import mfiari.fireemblem.game.chapters.Level;
 import mfiari.lib.game.controlleur.ControlleurVue;
 import mfiari.lib.game.evenements.EvenementDialogue;
 import mfiari.lib.game.personnage.Gens;
@@ -32,6 +33,8 @@ public class Game extends ControlleurVue {
     
     public final String CHOIX_MAP = "choixMap";
     public final String CHOIX_DIFFICULTE = "choixDifficulte";
+    public final String MENU = "menu";
+    public final String OUTFIT = "outfit";
     private final Partie partie;
     
     public Game (Partie partie) {
@@ -39,32 +42,82 @@ public class Game extends ControlleurVue {
         this.partie = partie;
     }
     
+    public Partie getPartie () {
+        return this.partie;
+    }
+    
     public void start () {
         if (this.partie.isEnCours()) {
             
         } else {
             do {
-                this.pcsControlleurVue.firePropertyChange(CHOIX_MAP, null, null);
-            } while (this.choix < 1 && this.choix > 3);
-            Chapters chapters = Chapters.values()[this.choix-1];
-            Difficulte[] difficultes = Difficulte.values();
-            do {
-                this.pcsControlleurVue.firePropertyChange(CHOIX_DIFFICULTE, chapters, difficultes);
-            } while (this.choix < 1 && this.choix > difficultes.length);
-            Difficulte difficulte = difficultes[this.choix-1];
-            FactoryTerrain factoryTerrain = new FactoryTerrain(chapters, difficulte);
-            Terrain terrain = factoryTerrain.createGameEnvironnement();
-            GamePlatform gamePlatform = terrain.createGamePlatform();
-            List<EvenementRecrutement> evenements = this.getEvenements();
-            Chapter chapter = new Chapter(chapters.name(), gamePlatform, new Organization(), "battre le boss", evenements);
-            Menu menu = new Menu(chapter, this.partie);
-            menu.start();
+                this.pcsControlleurVue.firePropertyChange(MENU, null, null);
+                switch (this.choix) {
+                    case 1 :
+                        outfit();
+                        break;
+                    case 2 :
+                        manage();
+                        break;
+                    case 3 :
+                        support();
+                        break;
+                    case 4 :
+                        info();
+                        break;
+                    case 5 :
+                        save();
+                        break;
+                    case 6 :
+                        end();
+                        break;
+                }
+            } while (true);
         }
+    }
+    
+    private void outfit () {
+        this.pcsControlleurVue.firePropertyChange(OUTFIT, null, null);
+    }
+    
+    private void manage () {
+        
+    }
+    
+    private void support () {
+        
+    }
+    
+    private void info () {
+        
+    }
+    
+    private void save () {
+        
+    }
+    
+    private void end () {
+        do {
+            this.pcsControlleurVue.firePropertyChange(CHOIX_MAP, null, null);
+        } while (this.choix < 1 && this.choix > 3);
+        Level level = Level.values()[this.choix-1];
+        Chapters[] chapters = Chapters.values();
+        do {
+            this.pcsControlleurVue.firePropertyChange(CHOIX_DIFFICULTE, level, chapters);
+        } while (this.choix < 1 && this.choix > chapters.length);
+        Chapters chapter = chapters[this.choix-1];
+        FactoryTerrain factoryTerrain = new FactoryTerrain(level, chapter);
+        Terrain terrain = factoryTerrain.createGameEnvironnement();
+        GamePlatform gamePlatform = terrain.createGamePlatform();
+        List<EvenementRecrutement> evenements = this.getEvenements();
+        Chapter chap = new Chapter(level.name(), gamePlatform, new Organization(), "battre le boss", evenements);
+        Menu menu = new Menu(chap, this.partie);
+        menu.start();
     }
     
     private List<EvenementRecrutement> getEvenements () {
         List<EvenementRecrutement> evenements = new ArrayList<>();
-        CharacterFactory factory = new CharacterFactory();
+        /*CharacterFactory factory = new CharacterFactory();
         mfiari.fireemblem.game.character.Character nino = factory.createCharacter("nino", null, CharacterType.mage_nino);
         mfiari.fireemblem.game.character.Character eliwood = factory.createCharacter("Eliwood", null, CharacterType.lord_eliwood);
         mfiari.fireemblem.game.character.Character hector = factory.createCharacter("hector", null, CharacterType.lord_hector);
@@ -78,7 +131,7 @@ public class Game extends ControlleurVue {
         nino2.addListeDialogueEvenement(dialogue, "Merci", 2);
         dialogue.ajouterGens(nino2);
         recrutementNino.addAlie(eliwood, dialogue);
-        evenements.add(recrutementNino);
+        evenements.add(recrutementNino);*/
         return evenements;
     }
     

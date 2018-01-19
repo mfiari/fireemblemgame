@@ -7,7 +7,7 @@
 package mfiari.fireemblem.game.factory;
 
 import mfiari.fireemblem.game.chapters.Chapters;
-import mfiari.fireemblem.game.chapters.Difficulte;
+import mfiari.fireemblem.game.chapters.Level;
 import mfiari.fireemblem.game.terrain.Terrain;
 
 /**
@@ -16,16 +16,16 @@ import mfiari.fireemblem.game.terrain.Terrain;
  */
 public class FactoryTerrain {
     
-    private final Chapters chapters;
-    private final Difficulte difficulte;
+    private final Level level;
+    private final Chapters chapter;
     
-    public FactoryTerrain (Chapters chapters, Difficulte difficulte) {
-        this.chapters = chapters;
-        this.difficulte = difficulte;
+    public FactoryTerrain (Level level, Chapters chapter) {
+        this.level = level;
+        this.chapter = chapter;
     }
     
     public Terrain createGameEnvironnement () {
-        return new Terrain(this.chapters, this.difficulte);
+        return new Terrain(this.level, this.chapter);
     }
     
 }

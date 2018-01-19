@@ -59,7 +59,7 @@ public class CreationBase extends Methode {
             Statement statement = this.connection.createStatement();
             statement.executeQuery("SELECT * FROM partie");
         } catch (SQLException ex) {
-            Log.writeLog(ex.getMessage());
+            Log.getLog().writeLog(ex.getMessage());
             return false;
         }
         return true;

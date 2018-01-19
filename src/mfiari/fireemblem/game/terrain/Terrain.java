@@ -8,7 +8,7 @@ package mfiari.fireemblem.game.terrain;
 
 import mfiari.fireemblem.game.Laucher;
 import mfiari.fireemblem.game.chapters.Chapters;
-import mfiari.fireemblem.game.chapters.Difficulte;
+import mfiari.fireemblem.game.chapters.Level;
 import mfiari.fireemblem.game.parser.xml.ChapterParser;
 import mfiari.fireemblem.game.parser.xml.Parser;
 import mfiari.fireemblem.game.parser.xml.PlatformParser;
@@ -20,20 +20,20 @@ import mfiari.lib.game.position.Position;
  */
 public class Terrain {
     
-    private final Chapters chapters;
-    private final Difficulte difficulte;
+    private final Level level;
+    private final Chapters chapter;
     
-    public Terrain (Chapters chapters, Difficulte difficult) {
-        this.chapters = chapters;
-        this.difficulte = difficult;
+    public Terrain (Level level, Chapters chapter) {
+        this.level = level;
+        this.chapter = chapter;
     }
     
     public GamePlatform createGamePlatform () {
     	GamePlatform plateauDeJeu = new GamePlatform();
         String mapLocation = "xml/map/";
         String characterLocation = "xml/character/";
-        String map = mapLocation + this.chapters.name() + "_" + this.difficulte.name() + ".xml";
-        String characters = characterLocation + this.chapters.name() + "_" + this.difficulte.name() + ".xml";
+        String map = mapLocation + this.level.name() + "_" + this.chapter.name() + ".xml";
+        String characters = characterLocation + this.level.name() + "_" + this.chapter.name() + ".xml";
         Parser.Parse(Laucher.class.getResourceAsStream(map), new PlatformParser(this, plateauDeJeu));
         Parser.Parse(Laucher.class.getResourceAsStream(characters), new ChapterParser(plateauDeJeu));
     	return plateauDeJeu;
@@ -53,6 +53,8 @@ public class Terrain {
                 return new CasePlaine(p);
             case porte :
                 return new CasePorte(p);
+            case forest :
+                return new CaseForest(p);
             default:
                 return null;
         }

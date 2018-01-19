@@ -14,10 +14,16 @@ import mfiari.fireemblem.game.texte.TexteVueGame;
 import java.awt.GridLayout;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.List;
 import javax.swing.Box;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import mfiari.fireemblem.game.chapters.Level;
+import mfiari.fireemblem.game.keyevent.MenuKeyAction;
+import mfiari.fireemblem.game.media.character.CharacterImage;
+import mfiari.fireemblem.game.object.Objet;
 import mfiari.lib.game.clavier.ActionPerso;
 import mfiari.lib.game.clavier.CodeBouton;
 import mfiari.lib.game.clavier.KeyDispatcher;
@@ -44,14 +50,84 @@ public class VueSwing_game extends VueSwing {
         this.game.ajouterEcouteur(new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
-                if (game.CHOIX_MAP.equals(evt.getPropertyName())) {
+                if (game.MENU.equals(evt.getPropertyName())) {
+                    menu();
+                } else if (game.OUTFIT.equals(evt.getPropertyName())) {
+                    outfit();
+                } else if (game.CHOIX_MAP.equals(evt.getPropertyName())) {
                     choixMap();
                 } else if (game.CHOIX_DIFFICULTE.equals(evt.getPropertyName())) {
-                    choixDifficulte((Chapters) evt.getOldValue(), (Difficulte[]) evt.getNewValue());
+                    choixDifficulte((Level) evt.getOldValue(), (Chapters[]) evt.getNewValue());
                 }
                 attendre();
             }
         });
+    }
+    
+    private void menu () {
+        Box box = Box.createVerticalBox();
+        ListKeyAction actions = new ListKeyAction();
+        actions.addKeyAction(CodeBouton.HAUT, ActionPerso.DECREMENTE);
+        actions.addKeyAction(CodeBouton.BAS, ActionPerso.INCREMENTE);
+        actions.addKeyAction(CodeBouton.ACTION, ActionPerso.ACTION);
+        ListComponentNumber componentNumber = new ListComponentNumber();
+        JButton buttonOutfit = new JButton("Equipement");
+        componentNumber.addKeyAction(buttonOutfit, 1);
+        box.add(buttonOutfit);
+        JButton buttonManage = new JButton("Gestion");
+        componentNumber.addKeyAction(buttonManage, 2);
+        box.add(buttonManage);
+        JButton buttonSupport = new JButton("Soutien");
+        componentNumber.addKeyAction(buttonSupport, 3);
+        box.add(buttonSupport);
+        JButton buttonInfo = new JButton("Infos");
+        componentNumber.addKeyAction(buttonInfo, 4);
+        box.add(buttonInfo);
+        JButton buttonSave = new JButton("Sauvegarde");
+        componentNumber.addKeyAction(buttonSave, 5);
+        box.add(buttonSave);
+        JButton buttonEnd = new JButton("Fin");
+        componentNumber.addKeyAction(buttonEnd, 6);
+        box.add(buttonEnd);
+        Ecran.panel.cacherNord();
+        Ecran.panel.ajouterCentre(box);
+        Ecran.fenetreDuJeu.addKeyBoardManager(new KeyDispatcher(new ActionPerso(this.game, this, actions, componentNumber)));
+    }
+    
+    private void outfit () {
+        List<mfiari.fireemblem.game.character.Character> characters = this.game.getPartie().getPersonnages();
+        JComponent[] components = new JComponent[characters.size()];
+        JPanel panelPerso = new JPanel(new GridLayout(characters.size()/3, 3));
+        
+        for (int i = 0 ; i < characters.size() ; i++) {
+            mfiari.fireemblem.game.character.Character character = characters.get(i);
+            Box panel = Box.createHorizontalBox();
+            panel.add(new JLabel(character.getName()));
+            panelPerso.add(panel);
+            components[i] = panel;
+        }
+        Ecran.panel.ajouterCentre(panelPerso);
+
+        MenuKeyAction menuKeyAction = new MenuKeyAction(components, 0);
+        menuKeyAction.ajouterEcouteur(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                if (evt.getPropertyName().equals(MenuKeyAction.UP)) {
+                    //pickUnitsUp(indice);
+                } else if (evt.getPropertyName().equals(MenuKeyAction.DOWN)) {
+                    //pickUnitsDown(indice);
+                } else if (evt.getPropertyName().equals(MenuKeyAction.LEFT)) {
+                    //pickUnitsLeft(indice);
+                } else if (evt.getPropertyName().equals(MenuKeyAction.RIGHT)) {
+                    //pickUnitsRight(indice);
+                } else if (evt.getPropertyName().equals(MenuKeyAction.ACTION)) {
+                    //pickUnitsAction(indice);
+                } else if (evt.getPropertyName().equals(MenuKeyAction.CANCEL)) {
+                    //pickUnitsCancel();
+                }
+            }
+        });
+        Ecran.fenetreDuJeu.addKeyBoardManager(new mfiari.fireemblem.game.keyevent.KeyDispatcher(menuKeyAction));
     }
     
     private void choixMap () {
@@ -75,18 +151,18 @@ public class VueSwing_game extends VueSwing {
         Ecran.fenetreDuJeu.addKeyBoardManager(new KeyDispatcher(new ActionPerso(this.game, this, actions, componentNumber)));
     }
     
-    private void choixDifficulte (Chapters chapters, Difficulte[] difficultes) {
+    private void choixDifficulte (Level level, Chapters[] chapters) {
         JPanel panel = new JPanel(new GridLayout(1, 2));
         Box boxLeft = Box.createVerticalBox();
         ListComponentNumber componentNumber = new ListComponentNumber();
-        for (int i = 0 ; i < difficultes.length ; i++) {
-            JButton button = new JButton(difficultes[i].name());
+        for (int i = 0 ; i < chapters.length ; i++) {
+            JButton button = new JButton(chapters[i].name());
             componentNumber.addKeyAction(button, i+1);
             boxLeft.add(button);
         }
         Box boxRight = Box.createVerticalBox();
         ImageUtil imageUtil = new ImageUtil();
-        switch (chapters) {
+        switch (level) {
             case binding_blade :
                 boxRight.add(new JLabel("Binding blade"));
                 boxRight.add(new PanelImage(imageUtil.getBindingBlade()));

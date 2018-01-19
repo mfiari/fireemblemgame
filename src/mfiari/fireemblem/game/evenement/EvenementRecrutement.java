@@ -10,6 +10,7 @@ import mfiari.fireemblem.game.character.Character;
 import mfiari.fireemblem.game.controler.Chapter;
 import java.util.HashMap;
 import java.util.Map;
+import mfiari.lib.game.controlleur.ControlleurVue;
 import mfiari.lib.game.evenements.Evenement;
 import mfiari.lib.game.evenements.EvenementDialogue;
 import mfiari.lib.game.jeu.Jeu;
@@ -46,11 +47,6 @@ public class EvenementRecrutement extends Evenement {
             System.out.println(cible.getName());
         }
         return this.recrue.equals(cible) && this.recrutement.containsKey(perso);
-    }
-
-    @Override
-    public void activeEvenement(Jeu jeu) {
-        
     }
     
     public void activeEvenement (Chapter chapter) {
